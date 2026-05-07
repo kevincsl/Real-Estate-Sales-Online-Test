@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="不動產營業員線上測驗與模擬考系統">
+  <meta name="theme-color" content="#4CAF50">
+  <title>不動產營業員線上測驗</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="app">
+    <div id="install-banner" class="hidden">
+      <span>可安裝成 App 以便離線使用</span>
+      <button id="install-btn">立即安裝</button>
+      <button id="dismiss-btn">稍後</button>
+    </div>
+
+    <header>
+      <h1>不動產營業員線上測驗</h1>
+      <nav>
+        <button class="nav-btn active" data-page="home">首頁</button>
+        <button class="nav-btn" data-page="practice">練習模式</button>
+        <button class="nav-btn" data-page="exam">模擬考試</button>
+        <button class="nav-btn" data-page="wrong">錯題複習</button>
+        <button class="nav-btn" data-page="manage">題庫管理</button>
+      </nav>
+    </header>
+
+    <main>
+      <section id="home-page" class="page active">
+        <div class="hero">
+          <h2>依正式題數與正式計分規則練習</h2>
+          <p>目前題庫：<span id="question-count">0</span> 題</p>
+          <p>錯題紀錄：<span id="wrong-count">0</span> 題</p>
+        </div>
+        <div class="action-cards">
+          <button id="quick-practice-btn" class="card">
+            <span class="icon">練</span>
+            <h3>開始練習</h3>
+            <p>隨機抽 10 題，逐題立即批改並顯示詳解。</p>
+          </button>
+          <button id="quick-exam-btn" class="card">
+            <span class="icon">考</span>
+            <h3>開始模擬考</h3>
+            <p>50 題、30 分鐘、每題 2 分，滿分 100 分，60 分及格。</p>
+          </button>
+          <button id="quick-wrong-btn" class="card">
+            <span class="icon">錯</span>
+            <h3>查看錯題</h3>
+            <p>集中複習答錯過的題目與詳解。</p>
+          </button>
+          <button id="install-app-btn" class="card install-card">
+            <span class="icon">📲</span>
+            <h3>安裝 App</h3>
+            <p>安裝後可離線使用，不耗流量。</p>
+          </button>
+        </div>
+      </section>
+
+      <section id="practice-page" class="page">
+        <div class="question-container">
+          <div class="progress-bar">
+            <span id="progress-text">第 1/10 題</span>
+            <div class="bar"><div id="progress-fill"></div></div>
+          </div>
+          <div class="question-header">
+            <span id="question-category" class="category-tag">分類</span>
+          </div>
+          <p id="question-text" class="question-text"></p>
+          <div id="options" class="options"></div>
+          <div id="feedback" class="feedback hidden"></div>
+          <div class="actions">
+            <button id="prev-btn" class="btn secondary hidden">上一題</button>
+            <button id="next-btn" class="btn primary hidden">下一題</button>
+            <button id="finish-btn" class="btn success hidden">結束練習</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="exam-page" class="page">
+        <div class="exam-header">
+          <div class="timer">
+            <span>剩餘時間</span>
+            <span id="timer-display">30:00</span>
+          </div>
+          <div class="exam-progress">
+            <span id="exam-progress-text">第 1/50 題</span>
+          </div>
+        </div>
+        <p class="exam-rule">模擬考固定為 50 題、30 分鐘、每題 2 分，滿分 100 分，60 分及格。</p>
+        <div class="question-container">
+          <p id="exam-question-text" class="question-text"></p>
+          <div id="exam-options" class="options"></div>
+          <div class="actions">
+            <button id="exam-next-btn" class="btn primary">下一題</button>
+          </div>
+        </div>
+        <div id="exam-review" class="question-container hidden"></div>
+      </section>
+
+      <section id="wrong-page" class="page">
+        <h2>錯題複習</h2>
+        <p id="wrong-list-info">累計錯題：<span id="wrong-total">0</span> 題</p>
+        <div id="wrong-list" class="wrong-list"></div>
+        <button id="review-wrong-btn" class="btn primary" disabled>開始錯題複習</button>
+      </section>
+
+      <section id="manage-page" class="page">
+        <h2>題庫管理</h2>
+        <div class="manage-actions">
+          <button class="btn" onclick="app.showAddQuestion()">新增題目</button>
+          <button class="btn" onclick="app.exportQuestions()">匯出題庫</button>
+          <button class="btn" onclick="app.importQuestions()">匯入題庫</button>
+        </div>
+        <div id="question-list" class="question-list"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      © 2026 Chi-Hsien Lin · Built with Claude Code<br />
+      Contact: <a href="mailto:kevincsl@gmail.com">kevincsl@gmail.com</a> ·
+      <a href="https://github.com/kevincsl/real-estate-exam" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </footer>
+
+    <noscript>此測驗系統需要啟用 JavaScript。</noscript>
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/questions.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js')
+        .then(() => console.log('SW registered'))
+        .catch(err => console.log('SW registration failed:', err));
+    }
+  </script>
+</body>
+</html>

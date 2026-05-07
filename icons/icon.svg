@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- 背景 -->
+  <rect width="512" height="512" rx="64" fill="#4CAF50"/>
+
+  <!-- 房屋 -->
+  <path d="M256 120 L120 220 L120 400 L180 400 L180 300 L332 300 L332 400 L392 400 L392 220 Z" fill="white"/>
+
+  <!-- 屋頂 -->
+  <path d="M256 80 L100 230 L412 230 Z" fill="#2E7D32"/>
+
+  <!-- 門 -->
+  <rect x="230" y="320" width="52" height="80" rx="4" fill="#4CAF50"/>
+
+  <!-- 窗戶 -->
+  <rect x="160" y="240" width="40" height="40" rx="4" fill="#81C784"/>
+  <rect x="312" y="240" width="40" height="40" rx="4" fill="#81C784"/>
+
+  <!-- 書本/試卷 -->
+  <rect x="200" y="440" width="112" height="50" rx="6" fill="white"/>
+  <line x1="220" y1="455" x2="292" y2="455" stroke="#4CAF50" stroke-width="4"/>
+  <line x1="220" y1="470" x2="280" y2="470" stroke="#4CAF50" stroke-width="4"/>
+  <line x1="220" y1="485" x2="265" y2="485" stroke="#4CAF50" stroke-width="4"/>
+</svg>

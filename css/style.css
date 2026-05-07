@@ -1,0 +1,567 @@
+﻿:root {
+  --taxi-yellow: #f8c72e;
+  --taxi-gold: #c88718;
+  --ink: #17130b;
+  --deep-green: #153d36;
+  --cream: #fff8e5;
+  --paper: #fffdf5;
+  --line: rgba(23, 19, 11, 0.16);
+  --muted: #6e6048;
+  --danger: #b63827;
+  --success: #17754f;
+  --shadow: 0 24px 70px rgba(23, 19, 11, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: "Noto Serif TC", "Source Han Serif TC", "PMingLiU", serif;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 18% 12%, rgba(248, 199, 46, 0.72), transparent 28rem),
+    radial-gradient(circle at 88% 8%, rgba(21, 61, 54, 0.2), transparent 24rem),
+    linear-gradient(135deg, #fff6cf 0%, #f5e3b5 42%, #e8c77e 100%);
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  background-image:
+    linear-gradient(45deg, rgba(23, 19, 11, 0.05) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(23, 19, 11, 0.05) 25%, transparent 25%);
+  background-position: 0 0, 0 12px;
+  background-size: 24px 24px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.35), transparent 72%);
+}
+
+#app {
+  width: min(1080px, calc(100% - 24px));
+  margin: 0 auto;
+  padding: 20px 0 90px;
+}
+
+#install-banner {
+  position: sticky;
+  top: 0;
+  z-index: 80;
+  margin-bottom: 14px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--cream);
+  background: linear-gradient(120deg, var(--ink), var(--deep-green));
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-end;
+  box-shadow: var(--shadow);
+}
+
+.hidden {
+  display: none !important;
+}
+
+#install-btn,
+#dismiss-btn {
+  min-height: 38px;
+  border-radius: 999px;
+  font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+#install-btn {
+  padding: 0 16px;
+  border: 0;
+  color: var(--ink);
+  background: var(--taxi-yellow);
+}
+
+#dismiss-btn {
+  padding: 0 14px;
+  border: 1px solid rgba(255, 248, 229, 0.5);
+  color: var(--cream);
+  background: transparent;
+}
+
+header,
+.hero,
+.question-container,
+.exam-header,
+.wrong-item,
+.manage-item,
+#wrong-page > h2,
+#manage-page > h2 {
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(12px);
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 70;
+  margin-bottom: 18px;
+  padding: 20px;
+  border-radius: 28px;
+  background: rgba(255, 253, 245, 0.9);
+}
+
+header h1 {
+  margin: 0 0 14px;
+  font-size: clamp(1.4rem, 4vw, 2.1rem);
+  letter-spacing: -0.04em;
+}
+
+nav {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+}
+
+.nav-btn {
+  min-height: 42px;
+  padding: 0 16px;
+  border: 1px solid rgba(23, 19, 11, 0.2);
+  border-radius: 999px;
+  color: var(--ink);
+  background: rgba(255, 248, 229, 0.78);
+  font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 800;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.nav-btn.active {
+  border-color: transparent;
+  background: var(--taxi-yellow);
+}
+
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+  animation: rise-in 320ms ease both;
+}
+
+.hero {
+  margin-bottom: 18px;
+  padding: clamp(22px, 5vw, 40px);
+  border-radius: 30px;
+  background:
+    linear-gradient(115deg, rgba(255, 253, 245, 0.92), rgba(255, 248, 229, 0.72)),
+    repeating-linear-gradient(90deg, transparent 0 18px, rgba(248, 199, 46, 0.16) 18px 36px);
+}
+
+.hero h2 {
+  margin: 0 0 12px;
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+}
+
+.hero p {
+  margin: 6px 0;
+  color: var(--muted);
+  font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+}
+
+.action-cards {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1fr;
+}
+
+.card {
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  color: var(--ink);
+  background: rgba(255, 253, 245, 0.85);
+  text-align: left;
+  cursor: pointer;
+}
+
+.card .icon {
+  display: inline-grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  margin-bottom: 8px;
+  border-radius: 50%;
+  color: var(--cream);
+  background: var(--deep-green);
+  font-size: 18px;
+}
+
+.card h3 {
+  margin: 0 0 4px;
+}
+
+.card p {
+  margin: 0;
+  color: var(--muted);
+  font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+}
+
+.install-card {
+  border-color: rgba(76, 175, 80, 0.4);
+}
+
+.install-card .icon {
+  background: var(--taxi-gold);
+}
+
+.question-container,
+.exam-header,
+.wrong-item,
+.manage-item {
+  border-radius: 26px;
+  background: rgba(255, 253, 245, 0.9);
+}
+
+.question-container {
+  padding: 22px;
+}
+
+.progress-bar span,
+.exam-progress,
+#wrong-list-info,
+.manage-item .meta,
+.wrong-item .category {
+  color: var(--muted);
+  font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+}
+
+.bar {
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(23, 19, 11, 0.12);
+  overflow: hidden;
+}
+
+#progress-fill {
+  height: 100%;
+  width: 0;
+  background: var(--deep-green);
+}
+
+.category-tag {
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  color: var(--cream);
+  background: var(--ink);
+  font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.question-text {
+  margin-bottom: 16px;
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+
+.options {
+  display: grid;
+  gap: 10px;
+}
+
+.option {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 13px 14px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  color: var(--ink);
+  background: rgba(255, 248, 229, 0.58);
+  text-align: left;
+  font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  cursor: pointer;
+}
+
+.option-label {
+  flex: 0 0 30px;
+  display: inline-grid;
+  place-items: center;
+  min-height: 30px;
+  border-radius: 999px;
+  color: var(--cream);
+  background: var(--deep-green);
+  font-size: 0.9rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.option-text {
+  flex: 1;
+  min-width: 0;
+  line-height: 1.6;
+}
+
+.option:hover,
+.option.selected {
+  border-color: rgba(21, 61, 54, 0.48);
+  background: rgba(248, 199, 46, 0.22);
+}
+
+.option.correct {
+  border-color: rgba(23, 117, 79, 0.58);
+  background: rgba(214, 246, 225, 0.8);
+}
+
+.option.wrong {
+  border-color: rgba(182, 56, 39, 0.54);
+  background: rgba(255, 225, 215, 0.8);
+}
+
+.option.disabled {
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.feedback {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  font-weight: 800;
+}
+
+.feedback-title,
+.explanation-main,
+.explanation-source {
+  margin: 0 0 8px;
+}
+
+.explanation-main,
+.explanation-source {
+  color: var(--ink);
+  font-weight: 500;
+  line-height: 1.7;
+}
+
+.explanation-source {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.feedback.correct {
+  color: var(--success);
+  background: rgba(23, 117, 79, 0.1);
+}
+
+.feedback.wrong {
+  color: var(--danger);
+  background: rgba(182, 56, 39, 0.1);
+}
+
+.explanation-list {
+  margin: 10px 0 0;
+  padding-left: 18px;
+  color: var(--ink);
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.explanation-list li {
+  margin-bottom: 6px;
+}
+
+.actions,
+.manage-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.actions {
+  justify-content: flex-end;
+}
+
+.btn {
+  min-height: 46px;
+  padding: 0 20px;
+  border-radius: 999px;
+  font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  font-size: 0.92rem;
+  font-weight: 900;
+  border: 1px solid rgba(23, 19, 11, 0.2);
+  cursor: pointer;
+}
+
+.btn.primary,
+.btn.success {
+  border-color: transparent;
+  color: var(--ink);
+  background: var(--taxi-yellow);
+}
+
+.btn.secondary {
+  color: var(--ink);
+  background: rgba(255, 253, 245, 0.92);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.exam-header {
+  display: flex;
+  gap: 14px;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  padding: 16px;
+}
+
+.exam-rule {
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  font-size: 0.95rem;
+}
+
+.timer {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: var(--deep-green);
+  font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 900;
+}
+
+.timer.warning {
+  color: var(--danger);
+  animation: pulse 1s infinite;
+}
+
+.wrong-list,
+.question-list {
+  display: grid;
+  gap: 10px;
+  margin: 14px 0;
+}
+
+.wrong-item,
+.manage-item {
+  padding: 14px;
+}
+
+.review-item {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  margin-bottom: 12px;
+  background: rgba(255, 248, 229, 0.52);
+}
+
+.wrong-item .question,
+.manage-item h4 {
+  margin: 0 0 6px;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+
+.manage-item .meta {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btn-delete {
+  margin-left: auto;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid rgba(182, 56, 39, 0.4);
+  color: var(--danger);
+  background: transparent;
+  font-size: 0.85rem;
+  line-height: 1;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.btn-delete:hover {
+  background: rgba(182, 56, 39, 0.12);
+}
+
+@media (min-width: 860px) {
+  .action-cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .question-container {
+    padding: 28px;
+  }
+}
+
+@media (max-width: 640px) {
+  #app {
+    width: min(100% - 14px, 1080px);
+  }
+
+  header,
+  .hero,
+  .question-container,
+  .exam-header {
+    border-radius: 20px;
+  }
+
+  .exam-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+
+.site-footer {
+  margin-top: 40px;
+  padding: 20px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  font-size: 0.85rem;
+  text-align: center;
+  line-height: 1.8;
+}
+
+.site-footer a {
+  color: var(--deep-green);
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
+}
