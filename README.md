@@ -98,7 +98,7 @@ real-estate-exam/
 
 ```bash
 # Clone 專案
-git clone https://github.com/YOUR_USERNAME/real-estate-exam.git
+git clone https://github.com/kevincsl/real-estate-exam.git
 
 # 使用任一字元編輯器開啟
 code .
