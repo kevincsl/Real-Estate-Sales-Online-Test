@@ -14,7 +14,7 @@
 2. 或 clone 此專案到本地
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/real-estate-exam.git
+git clone https://github.com/kevincsl/real-estate-exam.git
 cd real-estate-exam
 # 直接用瀏覽器開啟 index.html 即可
 ```
