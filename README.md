@@ -156,10 +156,8 @@ code .
 4. 提交並推送到您的分支
 5. 創建 Pull Request
 
-## 📄 授權
+## License
 
 MIT License
 
----
-
-**祝您考試順利！🏆**
+Copyright (c) Chi-Hsien Lin &lt;kevincsl@gmail.com&gt;
