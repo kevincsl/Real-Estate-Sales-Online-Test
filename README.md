@@ -14,8 +14,8 @@
 2. 或 clone 此專案到本地
 
 ```bash
-git clone https://github.com/kevincsl/real-estate-exam.git
-cd real-estate-exam
+git clone https://github.com/kevincsl/Real-Estate-Sales-Online-Test.git
+cd Real-Estate-Sales-Online-Test
 # 直接用瀏覽器開啟 index.html 即可
 ```
 
@@ -49,7 +49,7 @@ cd real-estate-exam
 ## 📁 專案結構
 
 ```
-real-estate-exam/
+Real-Estate-Sales-Online-Test/
 ├── index.html          # 主頁面
 ├── css/
 │   └── style.css       # 樣式檔案
@@ -57,7 +57,6 @@ real-estate-exam/
 │   ├── app.js          # 主程式
 │   ├── questions.js    # 題庫資料
 │   ├── storage.js      # LocalStorage 管理
-│   └── pwa.js          # PWA 服務
 ├── manifest.json       # PWA 設定
 ├── sw.js              # Service Worker
 ├── icons/             # 圖示資源
@@ -98,7 +97,7 @@ real-estate-exam/
 
 ```bash
 # Clone 專案
-git clone https://github.com/kevincsl/real-estate-exam.git
+git clone https://github.com/kevincsl/Real-Estate-Sales-Online-Test.git
 
 # 使用任一字元編輯器開啟
 code .
@@ -112,7 +111,7 @@ code .
 1. Fork 此專案到您的 GitHub
 2. 前往 Settings → Pages
 3. Source 選擇 `main` branch
-4. 幾分鐘後即可透過 `https://YOUR_USERNAME.github.io/real-estate-exam` 訪問
+4. 幾分鐘後即可透過 `https://kevincsl.github.io/Real-Estate-Sales-Online-Test` 訪問
 
 ### 新增題目格式
 
@@ -152,7 +151,7 @@ code .
 歡迎提交 Pull Request 豐富題庫！
 
 1. Fork 此專案
-2. 建立功能分支 (`git checkout -b add/questions-2024`)
+2. 建立功能分支 (`git checkout -b add/questions-2025`)
 3. 新增或修正題目
 4. 提交並推送到您的分支
 5. 創建 Pull Request
